@@ -4,7 +4,7 @@ const { Page, User } = require('../models');
 
 module.exports = router;
 
-router.get('/users', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const allUsers = await User.findAll();
     res.send(userList(allUsers));
@@ -13,7 +13,7 @@ router.get('/users', async (req, res, next) => {
   }
 });
 
-router.get('/users/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { id: req.params.id } });
     const uPages = await Page.findAll({

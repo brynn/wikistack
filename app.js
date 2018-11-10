@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 const app = express();
 const morgan = require('morgan');
 const wikiRouter = require('./routes/wiki');
-const userRouter = require('./routes/user');
+const userRouter = require('./routes/users');
 const models = require('./models');
 
 app.use(express.static(__dirname + '/public'));
@@ -14,7 +14,7 @@ module.exports = app; // this line is only used to make testing easier.
 
 app.use(express.urlencoded({ extended: false }));
 app.use('/wiki', wikiRouter);
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.redirect('/wiki');
