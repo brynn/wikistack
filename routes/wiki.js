@@ -22,6 +22,9 @@ router.get('/:slug', async (req, res, next) => {
     const foundPage = await Page.findOne({
       where: { slug: req.params.slug },
     });
+    if (!foundPage) {
+      res.status(404).send('this page does not exist');
+    }
     const author = await foundPage.getAuthor();
     res.send(wikiPage(foundPage, author));
   } catch (err) {
